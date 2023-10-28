@@ -1,0 +1,392 @@
+\documentclass[12pt, a4paper]{article}
+
+%------------------------------------------------------------------------------
+% Packages
+%------------------------------------------------------------------------------
+
+% Add package to support changing page dimensions.
+\usepackage[a4paper, total={6.5in, 8.5in}]{geometry}
+
+% Add package to support spanish language.
+\usepackage{babel}
+
+% Add package to manage accents and letter "ñ".
+\usepackage[latin1]{inputenc}
+
+% Add package to manage images.
+\usepackage{graphicx}
+
+% Add package to manage font and background colors.
+\usepackage{xcolor}
+
+% Add package to extend array and tabular functionality.
+\usepackage{array}
+
+% Add and configure package to manage hypertext links in the document.
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks = true,
+    urlcolor = blue,
+    linkcolor = blue
+}
+
+% Add package to allow multi-page tables.
+\usepackage{longtable}
+
+% Add package to allow fontawesome5 icons.
+\usepackage{fontawesome5}
+
+% Add package to manage the appearance of the structure units
+% (chapter, sections, subsections, etc ...) within a document.
+\usepackage{titlesec}
+
+%------------------------------------------------------------------------------
+% Custom Commands
+%------------------------------------------------------------------------------
+
+% Define special commands to change the section style.
+
+\newcommand{\getsectionbgcolor}{black!70}
+
+\newcommand{\colorsection}[1]{
+    \colorbox{\getsectionbgcolor}{
+        \parbox{0.94\textwidth}{\color{white}\centering\textbf{#1}}
+    }
+}
+
+% Define special commands to display programming languages labels.
+
+%C++
+\newcommand{\CC}{%
+    C\nolinebreak\hspace{.05em}%
+    \raisebox{.4ex}{\tiny\bf +}\nolinebreak\hspace{.01em}%
+    \raisebox{.4ex}{\tiny\bf +}%
+}
+
+%C#
+\newcommand{\CS}{%
+    C\nolinebreak\hspace{.07em}\raisebox{.4ex}{\scriptsize\bf \#}%
+}
+
+% Define other custom special commands.
+
+\newcommand{\YearsOfXp}{
+    $11^+$
+}
+
+%------------------------------------------------------------------------------
+% Document Customizations
+%------------------------------------------------------------------------------
+
+% Make customizations on the "\section" structure unit.
+
+\titleformat{\section}
+    [display]              % [shape] Distribution of title elements.
+    {\sffamily\Large}      % {format} Specify the font family and format.
+    {}                     % {label}.
+    {0pt}                  % {sep} Separation between label and title body.
+    {\colorsection}        % {before-code} Code preceding the title body.
+
+\titlespacing*{\section}
+    {0pt}                  % {left} Left margin.
+    {0pt}                  % {before-sep} Vertical space before the title.
+    {\baselineskip}        % {after-sep} Separation between title and text.
+
+% Now, start the document.
+
+\begin{document}
+
+
+%------------------------------------------------------------------------------
+% Section: Personal/Contact Information
+%------------------------------------------------------------------------------
+
+\section{Diego Fabían Smania}
+
+\begin{table}[h]
+\begin{tabular}{cc}
+
+    \begin{minipage}{0.29\textwidth}
+        \includegraphics[scale=0.19]{assets/img/profile_img.jpg}
+    \end{minipage}
+    &
+    \begin{minipage}{0.64\textwidth}
+    \begin{tabular}{cl}
+        \faBookmark & \uppercase{\textbf{Full Stack Developer}} \\
+        \faGlobeAmericas & Nationality: Argentina \\
+        \faBirthdayCake & Date of Birth: $28^{th}$ March, 1982 \\
+        \faPhone & Phone: {\footnotesize +}54 9 (341) (15)3166151 \\
+        \faEnvelope & Email: diego.smania@gmail.com \\
+        \faHome & Address: 2139 Panizza St, Fl 3, Apt B \\
+        \faMapMarker* & Locality: Rosario, Santa Fe, Argentina
+    \end{tabular}
+    \end{minipage}
+
+\end{tabular}
+\end{table}
+
+
+%------------------------------------------------------------------------------
+% Section: Profile Summary
+%------------------------------------------------------------------------------
+
+% Redefine the background color used on this section.
+\renewcommand{\getsectionbgcolor}{blue!60}
+\section{Profile}
+
+\begin{longtable}{p{0.95\textwidth}}
+
+I'm a \textit{Full Stack Developer} with scientist orientation and \YearsOfXp years of experience in the IT industry. My primary goal is to continuously grow as a professional, improving my skills as a developer, with some preference on all the stack of technologies associated with the web development area.
+
+\\
+
+Throughout my professional career, I have gained experience with the following technologies (in the enumerated order):
+
+\begin{itemize}
+    \item Development of software for embedded systems using \textit{C/\CC}, \textit{Lua} and \textit{Python} technologies.
+    \item Development of desktop applications using \textit{\CS} around the \textit{.NET Framework}.
+    \item Design, development and maintenance of web systems/applications using \textit{PHP}, \textit{Javascript/JQuery}, \textit{HTML5/CSS3} and \textit{DBMS} like \textit{SQLite/MySQL}. Usually, but not always, around \textit{Laravel} and the \textit{Bootstrap} frameworks.
+\end{itemize}
+
+\\
+
+Currently, I'm focused on keep learning the \textit{Laravel framework}, and as a part of this path I spare some of my free time to maintain and enhance the \href{https://github.com/jeroennoten/Laravel-AdminLTE}{jeroennoten/Laravel-AdminLTE} project at \textit{Github}. However, I'm always predisposed to be trained in or learn other technologies.
+
+\end{longtable}
+
+
+%------------------------------------------------------------------------------
+% Section: Professional Experience
+%------------------------------------------------------------------------------
+
+\newpage
+% Redefine the background color used on this section.
+\renewcommand{\getsectionbgcolor}{blue!60}
+\section{Professional Experience}
+
+\begin{longtable}{p{0.12\textwidth} | p{0.80\textwidth}}
+
+    % Company: LLW Ingeniería SRL.
+    \textit{Jul 2020\newline to \newline Present}
+    &
+    \textbf{Software Developer at LLW Ingeniería S.R.L.}
+    \vspace{0.75em}
+    \newline
+    Involved in the design, development and maintenance of a system for the telecommunication area. The system consists of a main application/service developed with \textit{\CS} (\textit{.Net Framework} and \textit{The Mono Project}) for a \textit{Linux} environment, whose goal is to control and manage a set of hardware devices that belongs to the thelephony area, and that in conjunction they provide voice communication between subscribers lying in two different technologies (\textit{X25/LAPB} and \textit{SIP}). Aditionally, an \textit{Admin Web Panel} was developed around the \textit{Laravel} framework to provision, monitor, configure and administer the system.
+    \vspace{0.75em}
+    \\ &
+    Maintenance and bug tracking/fixing over a \textit{Softswitch} software developed in \textit{C/\CC} technologies.
+    \vspace{0.75em}
+    \\ &
+    Development of scripts with \textit{Python} to automate tasks at the company for different purposes.
+
+    \\
+
+    % Company: Microtrol SRL.
+    \textit{Sep 2011\newline to \newline Feb 2020}
+    &
+    \textbf{Software Developer at Microtrol S.R.L.}
+    \vspace{0.75em}
+    \newline
+    At the first years, I had to develop and maintain multiple interactive applications for digital television transmissions (\textit{GINGA Project}), using the languages \textit{NCL} and \textit{LUA}, including a soccer statistics application that was broadcasted in conjunction with the transmission of each soccer game of the Argentine soccer tournament.
+    \vspace{0.75em}
+    \\ &
+    After acquiring some experience, I jumped into the development of firmware for \textit{Set Top Boxes} (\textit{STBs}) with different architectures (\textit{SH4}, \textit{ARM}), mostly using the languages \textit{C/\CC}. At this point, it is worth mentioning some of the major tasks I was involved, like the integration of the newest \textit{GINGA Middleware} into the \textit{STB} device, the implementation of a custom \textit{MPEG-DASH Adaptative Streaming} protocol on the \textit{STB}, and the development of a new generation of \textit{STBs} (not \textit{Android}) that supported native multimedia applications based on \textit{Lua} (for example, a \textit{Twitter} and \textit{Youtube} clients).
+    \vspace{0.75em}
+    \\ &
+    Finally, on the latest and longest stage, I was mostly involved in the development and maintenance of a web system that controlled the logistics, the monitoring and the remote support for a set of particular \textit{Android} devices that were distributed to the educational area as a part of a government program, working with technologies that includes languages such as \textit{PHP}, \textit{Javascript/JQuery}, \textit{HTML5/CSS3}, \textit{SQL}, and frameworks/libraries such as \textit{Bootstrap}, \textit{AdminLTE} and \textit{Laravel}. Also, but with a little less of dedication, I had to track bugs and fix problems on the firmware of the \textit{Android} devices, and the underlying service/agent that interacted with the web system.
+\end{longtable}
+
+
+%------------------------------------------------------------------------------
+% Section: Education
+%------------------------------------------------------------------------------
+
+% Redefine the background color used on this section.
+\renewcommand{\getsectionbgcolor}{blue!60}
+\section{Education}
+
+\begin{longtable}{p{0.12\textwidth} | p{0.80\textwidth}}
+
+    % Java Programming Course.
+    \textit{2010 \newline to \newline 2011}
+    &
+    \textbf{Course: Java Programming}
+    \vspace{0.2em}
+    \newline
+    \textit{Fundación Libertad}
+    \newline
+    \textit{170 Mitre St., Rosario, Santa Fe, Argentina}
+    \vspace{0.5em}
+    \\ &
+    Approved the initial, intermediate and advanced level of the course \textit{Sun Java Programming} from \textit{Red Proydesa} in relation to a scholarship program called \textit{Becas ControlF}.
+
+    \\
+
+    % University Education
+    \textit{2000 \newline to \newline 2017}
+    &
+    \textbf{University: Bachelor on Computer Science}
+    \vspace{0.2em}
+    \newline
+    \textit{FCEIA - Universidad Nacional de Rosario (UNR)}
+    \newline
+    \textit{250 Pellegrini Ave., Rosario, Santa Fe, Argentina}
+    \vspace{0.5em}
+    \\ &
+    Completed $93\%$ (28 over 30 courses) of the bachelor's degree in \textit{Computer Science} with an average of $8.3$. Refer to \nameref{sec:appendix} for more details about the academic plan.
+
+    \\
+
+    % High School
+    \textit{1995 \newline to \newline 1999}
+    &
+    \textbf{High School: Technical Bachelor}
+    \vspace{0.2em}
+    \newline
+    \textit{Instituto Politécnico Superior General San Martín (IPS)}
+    \newline
+    \textit{250 Pellegrini Ave., Rosario, Santa Fe, Argentina}
+    \vspace{0.5em}
+    \\ &
+    Obtained a technical bachelor's degree with specialization on electronics.
+\end{longtable}
+
+
+%------------------------------------------------------------------------------
+% Section: Skills
+%------------------------------------------------------------------------------
+
+% Redefine the background color used on this section.
+\renewcommand{\getsectionbgcolor}{blue!60}
+\section{Skills}
+
+\begin{longtable}{p{0.18\textwidth} | p{0.72\textwidth}}
+
+    \textit{Languages}
+    &
+    \textbf{Spanish}: Native or bilingual proficiency.
+    \textbf{English}: Professional working proficiency for read/write and elementary proficiency for speak.
+    
+    \\
+    
+    \textit{Programming \newline Languages}
+    &
+    Knowledges on \textit{C/\CC}, \textit{Java}, \textit{\CS}, \textit{Python}, \textit{Lua}, \textit{PHP}, \textit{CSS3}, \textit{HTML5}, \textit{Javascript}, \textit{Bash}, \textit{SQL (MySQL / SQLite)}.
+
+    \\
+
+    \textit{Libraries and \newline Frameworks}
+    &
+    Experience with \textit{jQuery}, \textit{Laravel}, \textit{AdminLTE}, \textit{Bootstrap} and \textit{PHP Slim Framework} for web \textit{APIs}.
+    
+    \\
+    
+    \textit{VCS}
+    &
+    Familiarized with the next Version Control Systems: \textit{Git}, \textit{Github}, \textit{Subversion (SVN)}.
+
+    \\
+
+    \textit{Operating\newline Systems}
+    &
+    Experience on administration and developing under \textit{Linux} and \textit{Windows} operating systems.
+\end{longtable}
+
+
+%------------------------------------------------------------------------------
+% Section: References
+%------------------------------------------------------------------------------
+
+% Redefine the background color used on this section.
+\renewcommand{\getsectionbgcolor}{blue!60}
+\section{References}
+
+\begin{longtable}{ p{0.18\textwidth} | p{0.72\textwidth} }
+    \textit{Sergio \newline Monti}
+    &
+    \textbf{Engineering Manager} at \textit{Microtrol SRL} \newline
+    Phone: +54 9 (341) (15)6467488
+    \vspace{0.6em} \\
+
+    \textit{Walter \newline Lozano}
+    &
+    \textbf{Software Engineer} at \textit{Microtrol SRL} \newline
+    Phone: +54 9 (341) (15)6519699
+    \vspace{0.6em} \\
+    
+    \textit{José \newline Sodo}
+    &
+    \textbf{Technical Area Manager} at \textit{LLW Ingeniería SRL} \newline
+    Phone: +54 9 (3468) (15)533618
+    \vspace{0.6em} \\
+    
+    \textit{Luis \newline Piñeiro}
+    &
+    \textbf{Commercial Manager} at \textit{LLW Ingeniería SRL} \newline
+    Phone: +54 9 (341) (15)5047964
+\end{longtable}
+
+
+%------------------------------------------------------------------------------
+% Section: Extra/Appendixes
+%------------------------------------------------------------------------------
+
+\newpage
+% Redefine the background color used on this section.
+\renewcommand{\getsectionbgcolor}{blue!60}
+\section{Appendix A}
+\label{sec:appendix}
+
+\noindent Details of the academic plan for the bachelor's degree in Computer Science.
+
+\begin{longtable}{| c | c | c |}
+
+    \hline
+    \bf{Year} & \bf{Course} & \bf{Grade} \\
+    \hline
+
+    1 & Algebra and Analytic Geometry I & 8 \\
+    1 & Mathematical Analysis I & 7 \\
+    1 & Introduction to Informatics & 6 \\
+    1 & Algebra and Analytic Geometry II & 7 \\
+    1 & Mathematical Analysis II & 5 \\
+    1 & Analysis of Programming Languages I & 5 \\
+    \hline
+
+    2 & Mathematical Analysis III & 8 \\
+    2 & Linear Algebra & 5 \\
+    2 & Logic and Algorithms & 9 \\
+    2 & Discrete Mathematics & 7 \\
+    2 & Computer Architecture & 10 \\
+    2 & Numerical Analysis & 7 \\
+    \hline
+
+    3 & Probability and Statistics & 8 \\
+    3 & Data Structures & 8 \\
+    3 & Analysis of Programming Languages II & 10 \\
+    3 & Physics I & 10 \\
+    3 & Mathematical Analysis IV & 9 \\
+    3 & Operating Systems & 10 \\
+    \hline
+
+    4 & Software Engineering I & 8 \\
+    4 & Communications & 10 \\
+    4 & Physics II & 9 \\
+    4 & Operative Investigation & 10 \\
+    4 & Database Theory & 10 \\
+    4 & Software Engineering II & - \\
+    \hline
+
+    5 & Introduction to Artificial Intelligence & 9 \\
+    5 & Investigation Methodology & 10 \\
+    5 & Digital Image Processing & 9 \\
+    5 & Machine Learning & 9 \\
+    5 & Internship & 10 \\
+    5 & Thesis & - \\
+    \hline
+\end{longtable}
+
+
+\end{document}
