@@ -1,4 +1,4 @@
-name: Compile And Publish
+name: Build And Publish
 
 # Controls when the workflow will run
 on:
@@ -15,7 +15,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
 
-  # Compile and build the Latex files
+  # Build the Latex files
   build:
 
     # The type of runner that the job will run on
@@ -28,14 +28,14 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v3
 
-      # Compile and build the LaTex document
+      # Build the LaTeX document
       - name: Build LaTeX document
-        uses: xu-cheng/latex-action@v2
+        uses: xu-cheng/latex-action@v3
         with:
-          # Specify document to compile
           root_file: curriculum_vitae.tex
 
       # Build the Github page
+      # TODO: Review this step...
       - name: Build Github page
         run: mv curriculum_vitae.pdf _site/David_Davo_CV_English.pdf
 
@@ -47,7 +47,7 @@ jobs:
   deploy:
 
     # This job requires the build one to be executed first
-    needs: build    
+    needs: build
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
@@ -66,6 +66,7 @@ jobs:
     steps:
 
       # Deploy to Github pages
+      # TODO: Review this step...
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
