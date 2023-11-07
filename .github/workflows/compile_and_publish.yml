@@ -32,7 +32,6 @@ jobs:
       - name: Build LaTeX document
         uses: xu-cheng/latex-action@v2
         with:
-          latexmk_use_xelatex: true          
           # Specify document to compile
           root_file: curriculum_vitae.tex
 
