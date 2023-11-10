@@ -3,7 +3,7 @@ name: Build And Publish
 # Controls when the workflow will run
 on:
 
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # Triggers the workflow on push or pull request events for the "main" branch
   push:
     branches: [ "main" ]
   pull_request:
@@ -12,32 +12,34 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+# A workflow is made up of one or more jobs that can run sequentially or in
+# parallel
 jobs:
 
-  # Build the Latex files
+  # Job to build the LateX files
   build:
 
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # Steps represent a sequence of tasks that will be executed as part of
+    # the job
     steps:
 
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can
+      # access it
       - name: Checkout source code
         uses: actions/checkout@v3
 
-      # Build the LaTeX document
+      # Build the LaTeX document to create a PDF file
       - name: Build LaTeX document
         uses: xu-cheng/latex-action@v3
         with:
           root_file: curriculum_vitae.tex
 
       # Build the Github page
-      # TODO: Review this step...
       - name: Build Github page
-        run: mv curriculum_vitae.pdf _site/David_Davo_CV_English.pdf
+        run: mv curriculum_vitae.pdf website/Diego_Smania_CV_English.pdf
 
       # TODO: Check what this actions does
       - name: Upload GitHub Pages artifact
@@ -46,7 +48,7 @@ jobs:
   # Deploy to Github pages
   deploy:
 
-    # This job requires the build one to be executed first
+    # This job requires the build job to be executed first
     needs: build
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
