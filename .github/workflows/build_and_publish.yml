@@ -16,7 +16,7 @@ on:
 # parallel
 jobs:
 
-  # Job to build the LateX files
+  # Job for building the LateX files
   build:
 
     # The type of runner that the job will run on
@@ -37,13 +37,15 @@ jobs:
         with:
           root_file: curriculum_vitae.tex
 
-      # Build the Github page
-      - name: Build Github page
+      # Prepare the Github Pages content
+      - name: Prepare Github page
         run: mv curriculum_vitae.pdf website/Diego_Smania_CV_English.pdf
 
-      # TODO: Check what this actions does
-      - name: Upload GitHub Pages artifact
-        uses: actions/upload-pages-artifact@v1.0.3
+      # Package and upload an artifact for deployment into Github Pages.
+      - name: Upload Github Pages artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: website
 
   # Deploy to Github pages
   deploy:
