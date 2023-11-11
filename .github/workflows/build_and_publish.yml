@@ -12,8 +12,7 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow is made up of one or more jobs that can run sequentially or in
-# parallel
+# A workflow is made up of jobs that can run sequentially or in parallel
 jobs:
 
   # Job for building the LateX files
@@ -22,32 +21,34 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of
-    # the job
+    # Steps, a sequence of tasks that will be executed as part of the job
     steps:
 
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can
       # access it
-      - name: Checkout source code
+      - name: Checkout Source Code
         uses: actions/checkout@v3
 
       # Build the LaTeX document to create a PDF file
-      - name: Build LaTeX document
+      - name: Build LaTeX Document
         uses: xu-cheng/latex-action@v3
         with:
           root_file: curriculum_vitae.tex
 
-      # Prepare the Github Pages content
-      - name: Prepare Github page
+      # Prepare the content for the Github Pages
+      - name: Prepare Github Page
         run: mv curriculum_vitae.pdf website/Diego_Smania_CV_English.pdf
 
-      # Package and upload an artifact for deployment into Github Pages.
-      - name: Upload Github Pages artifact
+      # Package and upload the website as an artifact (named github-pages by
+      # default) to be used on the deployment job. An artifact allows you to
+      # persist data after a job has completed, and share that data with
+      # another job in the same workflow
+      - name: Upload Github Pages Artifact
         uses: actions/upload-pages-artifact@v2
         with:
           path: website
 
-  # Deploy to Github pages
+  # Job for deployment into Github Pages
   deploy:
 
     # This job requires the build job to be executed first
@@ -55,8 +56,11 @@ jobs:
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
+      # Add permission to deploy to Pages
+      pages: write
+      # Add permission to verify the deployment originates from an appropriate
+      # source
+      id-token: write
 
     # Deploy to the github-pages environment
     environment:
@@ -66,13 +70,10 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    # Steps, a sequence of tasks that will be executed as part of the job
     steps:
 
-      # Deploy to Github pages
-      # TODO: Review this step...
-      - name: Deploy to GitHub Pages
+      # Deploy artifact (github-pages artifact by default) to Github Pages
+      - name: Deploy Artifact to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
-        with:
-          artifact-name: build
+        uses: actions/deploy-pages@v2
