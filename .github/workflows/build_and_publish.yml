@@ -33,11 +33,11 @@ jobs:
       - name: Build LaTeX Document
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: curriculum_vitae.tex
+          root_file: resume.tex
 
       # Prepare the content for the Github Pages
       - name: Prepare Github Page
-        run: mv curriculum_vitae.pdf website/Diego_Smania_CV_English.pdf
+        run: mv resume.pdf website/resume_en.pdf
 
       # Package and upload the website as an artifact (named github-pages by
       # default) to be used on the deployment job. An artifact allows you to
