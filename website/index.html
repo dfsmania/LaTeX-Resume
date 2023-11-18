@@ -338,7 +338,6 @@
             <hr class="m-0" />
 
             <!-- PDF Resume-->
-            <!-- TODO: Review, and embed a PDF viewer? -->
             <section class="resume-section" id="pdf-version">
                 <div class="resume-section-content">
 
@@ -347,13 +346,18 @@
                         PDF Version
                     </h2>
 
-                    <p>
-                        You can check a detailed version of my resume (made with LaTeX) at the next link:
+                    <p class="mb-5">
+                        You can check a detailed LaTeX made version of my resume below, or download it from the next link:
                         <a class="link-danger" href="resume_en.pdf" target="_blank">
                             <i class="fas fa-lg fa-fw fa-file-pdf text-danger"></i>
                             PDF Resume
                         </a>
                     </p>
+
+                    <object class="w-100" data="resume_en.pdf" type="application/pdf" height="800px">
+                        <p>It appears you don't have a PDF viewer for this browser...</p>
+                    </object>
+
                 </div>
             </section>
         </div>
