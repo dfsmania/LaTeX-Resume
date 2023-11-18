@@ -37,7 +37,7 @@ jobs:
 
       # Prepare the content for the Github Pages
       - name: Prepare Github Page
-        run: mv resume.pdf website/resume_en.pdf
+        run: mv resume.pdf website/assets/pdf/resume_en.pdf
 
       # Package and upload the website as an artifact (named github-pages by
       # default) to be used on the deployment job. An artifact allows you to
