@@ -16,6 +16,9 @@
 % Add package to manage images.
 \usepackage{graphicx}
 
+% Add package to manage and draw graphic elements.
+\usepackage{tikz}
+
 % Add package to manage font and background colors.
 \usepackage{xcolor}
 
@@ -108,7 +111,12 @@
 \begin{tabular}{cc}
 
     \begin{minipage}{0.3\textwidth}
-        \includegraphics[scale=0.18]{website/assets/img/profile_pdf.jpg}
+        \begin{tikzpicture}
+            \clip (0,0) circle (2.4cm);
+            \node[anchor=center] at (0,0) {
+                \includegraphics[scale=0.2]{website/assets/img/profile_pdf.jpg}
+            };
+        \end{tikzpicture}
     \end{minipage}
     &
     \begin{minipage}{0.62\textwidth}
