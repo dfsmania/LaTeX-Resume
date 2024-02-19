@@ -27,7 +27,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can
       # access it
       - name: Checkout Source Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Build the LaTeX document to create a PDF file
       - name: Build LaTeX Document
@@ -44,7 +44,7 @@ jobs:
       # persist data after a job has completed, and share that data with
       # another job in the same workflow
       - name: Upload Github Pages Artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: website
 
@@ -76,4 +76,4 @@ jobs:
       # Deploy artifact (github-pages artifact by default) to Github Pages
       - name: Deploy Artifact to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
