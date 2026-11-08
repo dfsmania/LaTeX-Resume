@@ -44,6 +44,9 @@
 % (chapter, sections, subsections, etc ...) within a document.
 \usepackage{titlesec}
 
+% Add package to provide programming facilities, such as conditional actions.
+\usepackage{etoolbox}
+
 %------------------------------------------------------------------------------
 % Custom Commands
 %------------------------------------------------------------------------------
@@ -60,14 +63,14 @@
 
 % Define special commands to display programming languages labels.
 
-%C++
+% C++
 \newcommand{\CC}{%
     C\nolinebreak\hspace{.05em}%
     \raisebox{.4ex}{\tiny\bf +}\nolinebreak\hspace{.01em}%
     \raisebox{.4ex}{\tiny\bf +}%
 }
 
-%C#
+% C#
 \newcommand{\CS}{%
     C\nolinebreak\hspace{.07em}\raisebox{.4ex}{\scriptsize\bf \#}%
 }
@@ -77,6 +80,16 @@
 \newcommand{\YearsOfXp}{
     $14$
 }
+
+% Define a boolean to control whether to show references.
+
+\newbool{showreferences}
+\setbool{showreferences}{false}
+
+% Define a boolean to control whether to show appendix.
+
+\newbool{showappendix}
+\setbool{showappendix}{false}
 
 %------------------------------------------------------------------------------
 % Document Customizations
@@ -126,7 +139,6 @@
         \faBirthdayCake & Date of Birth: $28^{th}$ March, 1982 \\[2pt]
         \faPhone & Phone: {\footnotesize +}54 9 (341) 3166151 \\[2pt]
         \faEnvelope & Email: diego.smania@gmail.com \\[2pt]
-        \faHome & Address: 2139 Panizza St., Fl. 3, Apt. B \\[2pt]
         \faMapMarker* & Location: Rosario, Santa Fe, Argentina
     \end{tabular}
     \end{minipage}
@@ -145,17 +157,30 @@
 
 \begin{longtable}{p{0.95\textwidth}}
 
-I'm a \textit{Software Architect} and \textit{Full-Stack Developer} with a scientific background and more than \YearsOfXp years of experience designing and building software systems across multiple domains. Throughout my career, I've worked on embedded systems, desktop applications, web platforms, robotics and IoT, always with a strong focus on software architecture, maintainability, and system integration, gaining expertise in:
+I'm a \textit{Software Architect} and \textit{Full-Stack Developer} with a
+scientific background and over \YearsOfXp years of experience designing and
+building software systems across multiple domains. Throughout my career, I've
+worked on embedded systems, desktop applications, web platforms, robotics and
+IoT, always with a strong focus on software architecture, maintainability, and
+system integration, gaining expertise in:
 
 \begin{itemize}
     \item Embedded software development using C/\CC, Python, and Lua.
-    \item Robotics systems based on ROS2, integrating LiDAR, RFID, industrial communication protocols, and real-time sensor processing.
-    \item Backend and API development using Python, PHP, Laravel, FastAPI, SQLite, MySQL, and REST architectures.
-    \item Full-Stack web application development with JavaScript, HTML5, CSS3, Bootstrap, and modern frontend technologies.
-    \item Desktop application development with \CS \hspace{0.1em} and the .NET Framework.
+    \item Robotics systems based on ROS2, integrating LiDAR, RFID, industrial
+        protocols, real-time sensor processing, and machine learning techniques.
+    \item Backend and API development using Python, PHP, FastAPI, SQLite,
+        MySQL, and REST architectures.
+    \item Full-Stack web development using Laravel, JavaScript, HTML5, CSS3,
+        Bootstrap, and modern frontend tools like Livewire and Alpine.js.
+    \item Desktop application development with \CS \hspace{0.1em} and the .NET
+        Framework.
 \end{itemize}
 
-Outside my professional work, I actively contribute to open-source software as creator of \href{https://github.com/dfsmania/LaradminLTE}{LaradminLTE} project and maintainer of \href{https://github.com/jeroennoten/Laravel-AdminLTE}{jeroennoten/Laravel-AdminLTE}, while continuously exploring new technologies and software engineering practices.
+Outside my professional work, I actively contribute to open-source software as
+creator of \href{https://github.com/dfsmania/LaradminLTE}{LaradminLTE} and
+maintainer of \href{https://github.com/jeroennoten/Laravel-AdminLTE}{jeroennoten/Laravel-AdminLTE},
+while continuously exploring new technologies and software engineering
+practices.
 
 \end{longtable}
 
@@ -179,13 +204,38 @@ Outside my professional work, I actively contribute to open-source software as c
     \newline
     \textbf{LLW Ingeniería S.R.L.}
     \vspace{0.75em} \newline
-    Designed the software architecture and led the full-stack development of a platform for automated cattle feed bunk volume estimation. The system integrates robotic perception pipelines (ROS2), LiDAR, RFID, wheel encoders, backend services, REST APIs, operational databases, and real-time web dashboards to process sensor data and estimate feed volume in large-scale feedlots. Technologies include Python, ROS2, FastAPI, JavaScript, SQLite, Docker, and Linux. \\
+    Designed the software architecture and led the full-stack development of a
+    platform for automated cattle feed bunk volume estimation. The system
+    integrates robotic perception pipelines (ROS2), LiDAR, RFID, wheel encoders,
+    backend services, REST APIs, operational databases, and real-time web
+    dashboards to process sensor data and estimate feed volume in large-scale
+    feedlots. Hands-on experience includes backend development with Python,
+    ROS 2, FastAPI, and SQLite; frontend development with Laravel, Livewire,
+    Alpine.js, and JavaScript; and containerization, deployment, and system
+    operations using Docker and Linux. \\
     &
-    Designed and developed a provisioning and management system for an existing \textit{Softswitch} platform using the Laravel framework. The system features a two-tiered API architecture: a low-level API offering standard \textit{CRUD} operations, and a high-level API tailored to the client's most common use cases. An administrative web panel, built on top of the low-level API, complements the system by providing intuitive management capabilities. \\
+    Designed and developed a provisioning and management system for an existing
+    \textit{Softswitch} platform using the Laravel framework. The system
+    features a two-tiered API architecture: a low-level API offering standard
+    \textit{CRUD} operations, and a high-level API tailored to the client's
+    most common use cases. An administrative web panel, built on top of the
+    low-level API, complements the system by providing intuitive management
+    capabilities. \\
     &
-    Designed and developed a system for the telecommunications sector. The system consists of a core application/service developed with \CS \hspace{0.1em} (.Net Framework and The Mono Project) for a Linux environment, aimed at controlling and managing telephony-related hardware devices to provide voice communication between subscribers lying in two different technologies (\textit{X25/LAPB} and \textit{SIP}). This system is complemented by an administrative web panel, developed using the Laravel framework, which allows for provisioning, monitoring, configuration, and overall system management. \\
+    Designed and developed a system for the telecommunications sector. The
+    system consists of a core application/service developed with \CS
+    \hspace{0.1em} (.Net Framework and The Mono Project) for a Linux
+    environment, aimed at controlling and managing telephony-related hardware
+    devices to provide voice communication between subscribers lying in two
+    different technologies (\textit{X25/LAPB} and \textit{SIP}). This system is
+    complemented by an administrative web panel, developed using the Laravel
+    framework, which allows for provisioning, monitoring, configuration, and
+    overall system management. \\
     &
-    Additionally, I have been responsible for maintaining and enhancing a \textit{Softswitch} system developed in C/\CC \hspace{0.1em} technologies, as well as developing Python scripts to automate various tasks across the company for different purposes. \\
+    Additionally, I have been responsible for maintaining and enhancing a
+    \textit{Softswitch} system developed in C/\CC \hspace{0.1em} technologies,
+    as well as developing Python scripts to automate various tasks across the
+    company for different purposes. \\
 
     % Company: Microtrol SRL.
     \textit{Sep 2011\newline to \newline Feb 2020}
@@ -194,11 +244,29 @@ Outside my professional work, I actively contribute to open-source software as c
     \newline
     \textbf{Microtrol S.R.L.}
     \vspace{0.75em} \newline
-    In the early years of my career, I developed and maintained several interactive applications for digital television transmissions as part of the \textit{GINGA Project}, utilizing \textit{NCL} and \textit{LUA}. One notable project was a soccer statistics application that was broadcast alongside each match of the \textit{Argentine Soccer League}. \\
+    In the early years of my career, I developed and maintained several
+    interactive applications for digital television transmissions as part of
+    the \textit{GINGA Project}, utilizing \textit{NCL} and \textit{LUA}. One
+    notable project was a soccer statistics application that was broadcast
+    alongside each match of the \textit{Argentine Soccer League}. \\
     &
-    As I gained experience, I transitioned into firmware development for \textit{Set-Top Boxes (STBs)} with various architectures (\textit{SH4}, \textit{ARM}), primarily using C/\CC. My key contributions during this phase included integrating the latest \textit{GINGA Middleware} into \textit{STB} devices, implementing a custom \textit{MPEG-DASH Adaptive Streaming} protocol, and developing a new generation of \textit{STBs (non-Android)} that supported native multimedia applications, including \textit{Twitter} and \textit{YouTube} clients. \\
+    As I gained experience, I transitioned into firmware development for
+    \textit{Set-Top Boxes (STBs)} with various architectures (\textit{SH4},
+    \textit{ARM}), primarily using C/\CC. My key contributions during this
+    phase included integrating the latest \textit{GINGA Middleware} into
+    \textit{STB} devices, implementing a custom
+    \textit{MPEG-DASH Adaptive Streaming} protocol, and developing a new
+    generation of \textit{STBs (non-Android)} that supported native multimedia
+    applications, including \textit{Twitter} and \textit{YouTube} clients. \\
     &
-    In the final and most extended phase of my role, I focused on developing and maintaining a web-based system that managed logistics, monitoring, and remote support for a set of Android devices distributed to the education sector as part of a government program. I worked with technologies such as PHP, JavaScript/jQuery, HTML5/CSS3, SQL, and frameworks/libraries like Bootstrap, AdminLTE, and Laravel. Additionally, I handled bug tracking and troubleshooting in the Android device firmware and the underlying agent responsible for reporting device information to the web system.
+    In the final and most extended phase of my role, I focused on developing
+    and maintaining a web-based system that managed logistics, monitoring, and
+    remote support for a set of Android devices distributed to the education
+    sector as part of a government program. I worked with technologies such as
+    PHP, JavaScript/jQuery, HTML5/CSS3, SQL, and frameworks/libraries like
+    Bootstrap, AdminLTE, and Laravel. Additionally, I handled bug tracking and
+    troubleshooting in the Android device firmware and the underlying agent
+    responsible for reporting device information to the web system.
 \end{longtable}
 
 
@@ -206,7 +274,6 @@ Outside my professional work, I actively contribute to open-source software as c
 % Section: Education
 %------------------------------------------------------------------------------
 
-\newpage
 % Redefine the background color used on this section.
 \renewcommand{\getsectionbgcolor}{blue!60}
 \section{Education}
@@ -221,9 +288,11 @@ Outside my professional work, I actively contribute to open-source software as c
     \vspace{0.2em} \newline
     \textit{Fundación Libertad}
     \newline
-    \textit{170 Mitre St., Rosario, Santa Fe, Argentina}
+    \textit{Rosario, Santa Fe, Argentina}
     \vspace{0.4em} \newline
-    Approved the initial, intermediate and advanced level of the course \textit{Sun Java Programming} from \textit{Red Proydesa} in relation to a scholarship program called \textit{Becas ControlF}. \\
+    Approved the initial, intermediate and advanced level of the course
+    \textit{Sun Java Programming} from \textit{Red Proydesa} in relation to a
+    scholarship program called \textit{Becas ControlF}. \\
 
     % University Education
     \textit{2000 \newline to \newline 2017}
@@ -234,9 +303,14 @@ Outside my professional work, I actively contribute to open-source software as c
     \newline
     \textit{Universidad Nacional de Rosario (UNR)}
     \newline
-    \textit{250 Pellegrini Ave., Rosario, Santa Fe, Argentina}
+    \textit{Rosario, Santa Fe, Argentina}
     \vspace{0.4em} \newline
-    Completed $93\%$ (28 over 30 courses) of the bachelor's degree in \textit{Computer Science} with an average of $8.3$ over $10$. Refer to \nameref{sec:appendix} for more details about the academic plan. \\
+    Completed $93\%$ (28 out of 30 courses) of the bachelor's degree in
+    \textit{Computer Science} with an average of $8.3$ over $10$. Relevant
+    completed coursework includes: \textit{Introduction to Artificial
+    Intelligence}, \textit{Machine Learning}, and \textit{Image Processing}.
+    \ifbool{showappendix}{Refer to \nameref{sec:appendix} for more details
+    about the academic plan.}{} \\
 
     % High School
     \textit{1995 \newline to \newline 1999}
@@ -245,7 +319,7 @@ Outside my professional work, I actively contribute to open-source software as c
     \vspace{0.2em} \newline
     \textit{Instituto Politécnico Superior General San Martín (IPS)}
     \newline
-    \textit{250 Pellegrini Ave., Rosario, Santa Fe, Argentina}
+    \textit{Rosario, Santa Fe, Argentina}
     \vspace{0.4em} \newline
     Obtained a technical bachelor's degree with specialization on electronics.
 \end{longtable}
@@ -265,116 +339,123 @@ Outside my professional work, I actively contribute to open-source software as c
     \textit{Natural \newline Languages}
     &
     \textbf{Spanish}: Native proficiency.
-    \textbf{English}: Professional working proficiency for read/write and elementary proficiency for speak. \\
+    \textbf{English}: Professional working proficiency for read/write and
+    elementary proficiency for speak. \\
 
     \textit{Programming \newline Languages}
     &
-    Knowledges on C/\CC, Java, \CS, Python, Lua, PHP, CSS3, HTML5, Javascript, Bash, SQL (MySQL / SQLite). \\
+    Knowledges on C/\CC, Java, \CS, Python, Lua, PHP, CSS3, HTML5, Javascript,
+    Bash, SQL (MySQL / SQLite). \\
 
     \textit{Frameworks \newline and Tools}
     &
-    Experience with jQuery, AdminLTE, Bootstrap and The Laravel Framework. \\
+    Experience with jQuery, AdminLTE, Bootstrap, Laravel, Livewire and
+    Alpine.js. \\
 
     \textit{VCS}
     &
-    Familiarized with the next Version Control Systems: Git, Github, Subversion (SVN). \\
+    Familiarized with the next Version Control Systems: Git, Github,
+    Subversion (SVN). \\
 
     \textit{Operating\newline Systems}
     &
-    Experience on administration and developing under \textit{Linux} and \textit{Windows} operating systems.
+    Experience on administration and developing under \textit{Linux} and
+    \textit{Windows} operating systems, and containerization using Docker. \\
 \end{longtable}
 
 
 %------------------------------------------------------------------------------
 % Section: References
 %------------------------------------------------------------------------------
+\ifbool{showreferences}{
+    % Redefine the background color used on this section.
+    \renewcommand{\getsectionbgcolor}{blue!60}
+    \section{References}
 
-% Redefine the background color used on this section.
-\renewcommand{\getsectionbgcolor}{blue!60}
-\section{References}
+    \renewcommand{\arraystretch}{1.8}
+    \begin{longtable}{ p{0.16\textwidth} | p{0.72\textwidth} }
+        \textit{Sergio \newline Monti}
+        &
+        \textbf{Engineering Manager} at \textit{Microtrol SRL} \newline
+        Phone: +54 9 (341) 6467488 \\
 
-\renewcommand{\arraystretch}{1.8}
-\begin{longtable}{ p{0.16\textwidth} | p{0.72\textwidth} }
-    \textit{Sergio \newline Monti}
-    &
-    \textbf{Engineering Manager} at \textit{Microtrol SRL} \newline
-    Phone: +54 9 (341) 6467488 \\
+        \textit{Walter \newline Lozano}
+        &
+        \textbf{Software Engineer} at \textit{Microtrol SRL} \newline
+        Phone: +54 9 (341) 6519699 \\
 
-    \textit{Walter \newline Lozano}
-    &
-    \textbf{Software Engineer} at \textit{Microtrol SRL} \newline
-    Phone: +54 9 (341) 6519699 \\
+        \textit{José \newline Sodo}
+        &
+        \textbf{Technical Area Manager} at \textit{LLW Ingeniería SRL} \newline
+        Phone: +54 9 (3468) 533618 \\
 
-    \textit{José \newline Sodo}
-    &
-    \textbf{Technical Area Manager} at \textit{LLW Ingeniería SRL} \newline
-    Phone: +54 9 (3468) 533618 \\
-
-    \textit{Luis \newline Piñeiro}
-    &
-    \textbf{Commercial Manager} at \textit{LLW Ingeniería SRL} \newline
-    Phone: +54 9 (341) 5047964
-\end{longtable}
+        \textit{Luis \newline Piñeiro}
+        &
+        \textbf{Commercial Manager} at \textit{LLW Ingeniería SRL} \newline
+        Phone: +54 9 (341) 5047964
+    \end{longtable}
+}{}
 
 
 %------------------------------------------------------------------------------
 % Section: Extra/Appendices
 %------------------------------------------------------------------------------
+\ifbool{showappendix}{
+    \newpage
+    % Redefine the background color used on this section.
+    \renewcommand{\getsectionbgcolor}{blue!60}
+    \section{Appendix A}
+    \label{sec:appendix}
 
-\newpage
-% Redefine the background color used on this section.
-\renewcommand{\getsectionbgcolor}{blue!60}
-\section{Appendix A}
-\label{sec:appendix}
+    \noindent Details of the academic plan for the bachelor's degree in
+    Computer Science.
 
-\noindent Details of the academic plan for the bachelor's degree in Computer Science.
+    \renewcommand{\arraystretch}{1.1}
+    \begin{longtable}{| c | c | c |}
 
-\renewcommand{\arraystretch}{1.1}
-\begin{longtable}{| c | c | c |}
+        \hline
+        \bf{Year} & \bf{Course} & \bf{Grade} \\
+        \hline
+        & Algebra and Analytic Geometry I & 8 \\
+        & Mathematical Analysis I & 7 \\
+        1 & Introduction to Informatics & 6 \\
+        & Algebra and Analytic Geometry II & 7 \\
+        & Mathematical Analysis II & 5 \\
+        & Analysis of Programming Languages I & 5 \\
+        \hline
 
-    \hline
-    \bf{Year} & \bf{Course} & \bf{Grade} \\
-    \hline
-    & Algebra and Analytic Geometry I & 8 \\
-    & Mathematical Analysis I & 7 \\
-    1 & Introduction to Informatics & 6 \\
-    & Algebra and Analytic Geometry II & 7 \\
-    & Mathematical Analysis II & 5 \\
-    & Analysis of Programming Languages I & 5 \\
-    \hline
+        & Mathematical Analysis III & 8 \\
+        & Linear Algebra & 5 \\
+        2 & Logic and Algorithms & 9 \\
+        & Discrete Mathematics & 7 \\
+        & Computer Architecture & 10 \\
+        & Numerical Analysis & 7 \\
+        \hline
 
-    & Mathematical Analysis III & 8 \\
-    & Linear Algebra & 5 \\
-    2 & Logic and Algorithms & 9 \\
-    & Discrete Mathematics & 7 \\
-    & Computer Architecture & 10 \\
-    & Numerical Analysis & 7 \\
-    \hline
+        & Probability and Statistics & 8 \\
+        & Data Structures & 8 \\
+        3 & Analysis of Programming Languages II & 10 \\
+        & Physics I & 10 \\
+        & Mathematical Analysis IV & 9 \\
+        & Operating Systems & 10 \\
+        \hline
 
-    & Probability and Statistics & 8 \\
-    & Data Structures & 8 \\
-    3 & Analysis of Programming Languages II & 10 \\
-    & Physics I & 10 \\
-    & Mathematical Analysis IV & 9 \\
-    & Operating Systems & 10 \\
-    \hline
+        & Software Engineering I & 8 \\
+        & Communications & 10 \\
+        4 & Physics II & 9 \\
+        & Operative Investigation & 10 \\
+        & Database Theory & 10 \\
+        & Software Engineering II & - \\
+        \hline
 
-    & Software Engineering I & 8 \\
-    & Communications & 10 \\
-    4 & Physics II & 9 \\
-    & Operative Investigation & 10 \\
-    & Database Theory & 10 \\
-    & Software Engineering II & - \\
-    \hline
-
-    & Introduction to Artificial Intelligence & 9 \\
-    & Investigation Methodology & 10 \\
-    5 & Digital Image Processing & 9 \\
-    & Machine Learning & 9 \\
-    & Internship & 10 \\
-    & Thesis & - \\
-    \hline
-\end{longtable}
-
+        & Introduction to Artificial Intelligence & 9 \\
+        & Investigation Methodology & 10 \\
+        5 & Digital Image Processing & 9 \\
+        & Machine Learning & 9 \\
+        & Internship & 10 \\
+        & Thesis & - \\
+        \hline
+    \end{longtable}
+}{}
 
 \end{document}
